@@ -428,7 +428,7 @@ button{
 .about__img{
   width: 200px;
   justify-self: center;
-  animation: floating 2s ease-in-out infinite;
+  animation: bounce 2s ease-in-out infinite;
 }
 
 /*=============== TRICK OR TREAT ===============*/
