@@ -19,9 +19,6 @@ if(navClose){
     })
 }
 
-/*=============== SAKURA ANIMATION ===============*/
-const sakura = new sakura('.sakura-petals')
-
 /*=============== REMOVE MENU MOBILE ===============*/
 const navLink = document.querySelectorAll('.nav__link')
 
