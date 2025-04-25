@@ -2,7 +2,7 @@
 const paymentConfig = {
     merchantId: "SU2504251824455203498132",
     callbackUrl: window.location.origin + "/payment-callback.html",
-    env: "SANDBOX" // Change to "PROD" for production
+    env: "a09c0d23-4a54-4a62-babc-dc67cd587a74" // Change to "PROD" for production
 };
 
 // Initialize payment buttons
