@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Products | Solo Tree</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <!-- Boxicons CSS -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- PhonePe SDK -->
+    <script src="https://checkout.phonepe.com/v1/checkout.js"></script>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav container">
+            <a href="/" class="nav__logo">Ѕᴏʟᴏ Tʀᴇᴇ Cᴏᴍᴍᴜɴɪᴛʏ</a>
+        </nav>
+    </header>
+
+    <main class="main container">
+        <section class="section trick" id="trick">
+            <h2 class="section__title">Promotion Price List</h2>
+
+            <div class="trick__container container grid">
+                <div class="trick__content">
+                    <img src="assets/img/pp1.png" alt="" class="trick__img">
+                    <h3 class="trick__title">Initiate</h3>
+                    <span class="trick__subtitle">1X • One-time broadcast • 1X Speed</span>
+                    <span class="trick__price">Rs:249/-</span>
+                    <button class="button trick__button" data-product="Initiate" data-price="249">
+                        <i class='bx bx-cart-alt trick__icon'></i>
+                    </button>
+                </div>
+
+                <div class="trick__content">
+                    <img src="assets/img/pp2.png" alt="" class="trick__img">
+                    <h3 class="trick__title">Riser</h3>
+                    <span class="trick__subtitle">2X • Two broadcasts • 2X Speed</span>
+                    <span class="trick__price">Rs:369/-</span>
+                    <button class="button trick__button" data-product="Riser" data-price="369">
+                        <i class='bx bx-cart-alt trick__icon'></i>
+                    </button>
+                </div>
+
+                <div class="trick__content">
+                    <img src="assets/img/pp3.png" alt="" class="trick__img">
+                    <h3 class="trick__title">Climber</h3>
+                    <span class="trick__subtitle">3X • Three broadcasts • 3X Speed</span>
+                    <span class="trick__price">Rs:469/-</span>
+                    <button class="button trick__button" data-product="Climber" data-price="469">
+                        <i class='bx bx-cart-alt trick__icon'></i>
+                    </button>
+                </div>
+
+                <div class="trick__content">
+                    <img src="assets/img/pp4.png" alt="" class="trick__img">
+                    <h3 class="trick__title">Achiever</h3>
+                    <span class="trick__subtitle">4X • Four broadcasts • 4X Speed</span>
+                    <span class="trick__price">Rs:599/-</span>
+                    <button class="button trick__button" data-product="Achiever" data-price="599">
+                        <i class='bx bx-cart-alt trick__icon'></i>
+                    </button>
+                </div>
+
+                <div class="trick__content">
+                    <img src="assets/img/pp5.png" alt="" class="trick__img">
+                    <h3 class="trick__title">Elite</h3>
+                    <span class="trick__subtitle">5X • Five broadcasts • 5X Speed</span>
+                    <span class="trick__price">Rs:799/-</span>
+                    <button class="button trick__button" data-product="Elite" data-price="799">
+                        <i class='bx bx-cart-alt trick__icon'></i>
+                    </button>
+                </div>
+
+                <div class="trick__content">
+                    <img src="assets/img/pp7.png" alt="" class="trick__img">
+                    <h3 class="trick__title">Legend</h3>
+                    <span class="trick__subtitle">6X • Six broadcasts • 6X Speed</span>
+                    <span class="trick__price">Rs:999/-</span>
+                    <button class="button trick__button" data-product="Legend" data-price="999">
+                        <i class='bx bx-cart-alt trick__icon'></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p class="footer__copy">&#169; 2025 Ѕᴏʟᴏ Tʀᴇᴇ Cᴏᴍᴍᴜɴɪᴛʏ. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Payment Processing Modal (hidden by default) -->
+    <div id="paymentModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Processing Payment</h3>
+            <div id="paymentStatus">
+                <p>Please wait while we redirect you to PhonePe...</p>
+                <div class="loader"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Payment configuration
+        const paymentConfig = {
+            merchantId: "SU2504251824455203498132",
+            callbackUrl: window.location.origin + "/payment-callback.html",
+            env: "PROD" // Change to "SANDBOX" for testing
+        };
+
+        // Add event listeners to all payment buttons
+        document.querySelectorAll('.trick__button').forEach(button => {
+            button.addEventListener('click', function() {
+                const productName = this.getAttribute('data-product');
+                const amount = parseInt(this.getAttribute('data-price'));
+                
+                // Show processing modal
+                document.getElementById('paymentModal').style.display = 'block';
+                
+                // Initiate payment
+                initiatePayment(productName, amount);
+            });
+        });
+
+        // Close modal handler
+        document.querySelector('.close').addEventListener('click', function() {
+            document.getElementById('paymentModal').style.display = 'none';
+        });
+
+        // Payment initiation function
+        function initiatePayment(productName, amount) {
+            const transactionId = 'TXN' + Date.now();
+            const userId = 'USER' + Math.floor(Math.random() * 1000000);
+            
+            // In a real implementation, you would call your backend API here
+            // to generate the payment request and get the redirect URL
+            
+            // For demo purposes, we'll use the frontend SDK directly
+            try {
+                const phonepeCheckout = new PhonePe.Checkout({
+                    merchantId: paymentConfig.merchantId,
+                    merchantTransactionId: transactionId,
+                    merchantUserId: userId,
+                    amount: amount * 100, // Convert to paise
+                    redirectUrl: paymentConfig.callbackUrl,
+                    redirectMode: "POST",
+                    callbackUrl: paymentConfig.callbackUrl,
+                    mobileNumber: "", // Can be collected from user
+                    paymentInstrument: {
+                        type: "PAY_PAGE"
+                    }
+                });
+
+                phonepeCheckout.start();
+            } catch (error) {
+                console.error("Payment error:", error);
+                document.getElementById('paymentStatus').innerHTML = `
+                    <p class="error">Error initiating payment. Please try again.</p>
+                `;
+            }
+        }
+    </script>
+
+    <style>
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+        }
+
+        .modal-content {
+            background-color: var(--container-color);
+            margin: 10% auto;
+            padding: 2rem;
+            border-radius: 1rem;
+            width: 80%;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Loader animation */
+        .loader {
+            border: 4px solid var(--text-color-light);
+            border-top: 4px solid var(--first-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 1rem auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error {
+            color: #ff3333;
+        }
+    </style>
+</body>
+</html>
