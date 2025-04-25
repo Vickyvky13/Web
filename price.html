@@ -5,16 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Products | Solo Tree</title>
     <link rel="stylesheet" href="assets/css/styles.css">
-    <!-- Boxicons CSS -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
-    <header class="header">
+    <!-- Header -->
+    <header class="header" id="header">
         <nav class="nav container">
-            <a href="/" class="nav__logo">Ѕᴏʟᴏ Tʀᴇᴇ Cᴏᴍᴍᴜɴɪᴛʏ</a>
+            <a href="#" class="nav__logo">
+                <img src="assets/img/logo.png" alt="" class="nav__logo-img">
+                Ѕᴏʟᴏ Tʀᴇᴇ Cᴏᴍᴍᴜɴɪᴛʏ
+            </a>
+
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="#home" class="nav__link active-link">Home</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#about" class="nav__link">About</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#trick" class="nav__link">Bots</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#new" class="nav__link">Group Branch</a>
+                    </li>
+                    <a href="https://t.me/Solo_Tree_support" class="button button--ghost">Support</a>
+                </ul>
+                <div class="nav__close" id="nav-close">
+                    <i class='bx bx-x'></i>
+                </div>
+                <img src="assets/img/M2.png" alt="" class="nav__img">
+            </div>
+
+            <div class="nav__toggle" id="nav-toggle">
+                <i class='bx bx-grid-alt'></i>
+            </div>
         </nav>
     </header>
 
+    <!-- Main -->
     <main class="main container">
         <section class="section trick" id="trick">
             <h2 class="section__title">Promotion Price List</h2>
@@ -83,8 +113,12 @@
         </section>
     </main>
 
+    <!-- Footer -->
     <footer class="footer">
         <p class="footer__copy">&#169; 2025 Ѕᴏʟᴏ Tʀᴇᴇ Cᴏᴍᴍᴜɴɪᴛʏ. All Rights Reserved.</p>
     </footer>
+
+    <!-- Optional JS for interactivity -->
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
