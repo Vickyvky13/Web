@@ -5,21 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Products | Solo Tree</title>
     <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="shortcut icon" href="assets/img/H2.png" type="image/x-icon">
+    <!-- Boxicons CSS -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header" id="header">
+    <header class="header">
         <nav class="nav container">
-            <a href="https://solotree.in" class="nav__logo">
-                <img src="assets/img/logo.png" alt="" class="nav__logo-img">
-                Ѕᴏʟᴏ Tʀᴇᴇ Cᴏᴍᴍᴜɴɪᴛʏ
-            </a>
+            <a href="/" class="nav__logo">Ѕᴏʟᴏ Tʀᴇᴇ Cᴏᴍᴍᴜɴɪᴛʏ</a>
         </nav>
     </header>
 
-    <!-- Main -->
     <main class="main container">
         <section class="section trick" id="trick">
             <h2 class="section__title">Promotion Price List</h2>
@@ -30,8 +25,8 @@
                     <h3 class="trick__title">Initiate</h3>
                     <span class="trick__subtitle">1X • One-time broadcast • 1X Speed</span>
                     <span class="trick__price">Rs:249/-</span>
-                    <button class="button trick__button">
-                        <i class='bx bx-cart-alt trick__icon'></i>
+                    <button class="button trick__button payment-button" data-product="Initiate" data-amount="249">
+                        <i class='bx bx-rupee trick__icon'></i> Pay with PhonePe
                     </button>
                 </div>
 
@@ -40,8 +35,8 @@
                     <h3 class="trick__title">Riser</h3>
                     <span class="trick__subtitle">2X • Two broadcasts • 2X Speed</span>
                     <span class="trick__price">Rs:369/-</span>
-                    <button class="button trick__button">
-                        <i class='bx bx-cart-alt trick__icon'></i>
+                    <button class="button trick__button payment-button" data-product="Riser" data-amount="369">
+                        <i class='bx bx-rupee trick__icon'></i> Pay with PhonePe
                     </button>
                 </div>
 
@@ -50,8 +45,8 @@
                     <h3 class="trick__title">Climber</h3>
                     <span class="trick__subtitle">3X • Three broadcasts • 3X Speed</span>
                     <span class="trick__price">Rs:469/-</span>
-                    <button class="button trick__button">
-                        <i class='bx bx-cart-alt trick__icon'></i>
+                    <button class="button trick__button payment-button" data-product="Climber" data-amount="469">
+                        <i class='bx bx-rupee trick__icon'></i> Pay with PhonePe
                     </button>
                 </div>
 
@@ -60,8 +55,8 @@
                     <h3 class="trick__title">Achiever</h3>
                     <span class="trick__subtitle">4X • Four broadcasts • 4X Speed</span>
                     <span class="trick__price">Rs:599/-</span>
-                    <button class="button trick__button">
-                        <i class='bx bx-cart-alt trick__icon'></i>
+                    <button class="button trick__button payment-button" data-product="Achiever" data-amount="599">
+                        <i class='bx bx-rupee trick__icon'></i> Pay with PhonePe
                     </button>
                 </div>
 
@@ -70,8 +65,8 @@
                     <h3 class="trick__title">Elite</h3>
                     <span class="trick__subtitle">5X • Five broadcasts • 5X Speed</span>
                     <span class="trick__price">Rs:799/-</span>
-                    <button class="button trick__button">
-                        <i class='bx bx-cart-alt trick__icon'></i>
+                    <button class="button trick__button payment-button" data-product="Elite" data-amount="799">
+                        <i class='bx bx-rupee trick__icon'></i> Pay with PhonePe
                     </button>
                 </div>
 
@@ -80,20 +75,19 @@
                     <h3 class="trick__title">Legend</h3>
                     <span class="trick__subtitle">6X • Six broadcasts • 6X Speed</span>
                     <span class="trick__price">Rs:999/-</span>
-                    <button class="button trick__button">
-                        <i class='bx bx-cart-alt trick__icon'></i>
+                    <button class="button trick__button payment-button" data-product="Legend" data-amount="999">
+                        <i class='bx bx-rupee trick__icon'></i> Pay with PhonePe
                     </button>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
     <footer class="footer">
         <p class="footer__copy">&#169; 2025 Ѕᴏʟᴏ Tʀᴇᴇ Cᴏᴍᴍᴜɴɪᴛʏ. All Rights Reserved.</p>
     </footer>
 
-    <!-- Optional JS -->
-    <script src="assets/js/main.js"></script>
+    <!-- Add the payment script -->
+    <script src="assets/js/payment.js"></script>
 </body>
 </html>
