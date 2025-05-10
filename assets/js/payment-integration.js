@@ -1,16 +1,18 @@
 
-// Dialog for collecting Telegram ID
-function showTelegramDialog(amount, plan) {
+// Dialog for collecting user details
+function showUserDetailsDialog(amount, plan) {
     return new Promise((resolve) => {
         const dialogHTML = `
-            <div id="telegram-dialog" class="payment-dialog">
+            <div id="user-details-dialog" class="payment-dialog">
                 <div class="dialog-content">
-                    <h3>Enter Your Telegram ID</h3>
-                    <p>We'll use this ID to contact you about your purchase</p>
-                    <input type="text" id="telegram-id" placeholder="Enter Telegram ID" required>
+                    <h3>Enter Your Details</h3>
+                    <input type="text" id="user-name" placeholder="Full Name" required>
+                    <input type="text" id="telegram-id" placeholder="Telegram ID" required>
+                    <input type="email" id="user-email" placeholder="Email Address" required>
+                    <input type="tel" id="user-phone" placeholder="Phone Number" required>
                     <div class="dialog-buttons">
                         <button onclick="closeDialog()" class="button button--ghost">Cancel</button>
-                        <button onclick="submitDialog()" class="button">Continue</button>
+                        <button onclick="submitDialog()" class="button">Continue to Payment</button>
                     </div>
                 </div>
             </div>`;
@@ -18,26 +20,34 @@ function showTelegramDialog(amount, plan) {
         document.body.insertAdjacentHTML('beforeend', dialogHTML);
         
         window.closeDialog = () => {
-            document.getElementById('telegram-dialog').remove();
+            document.getElementById('user-details-dialog').remove();
             resolve(null);
         };
 
         window.submitDialog = () => {
-            const telegramId = document.getElementById('telegram-id').value;
-            if (telegramId) {
-                document.getElementById('telegram-dialog').remove();
-                resolve(telegramId);
+            const userDetails = {
+                name: document.getElementById('user-name').value,
+                telegramId: document.getElementById('telegram-id').value,
+                email: document.getElementById('user-email').value,
+                phone: document.getElementById('user-phone').value
+            };
+
+            if (userDetails.name && userDetails.telegramId && userDetails.email && userDetails.phone) {
+                document.getElementById('user-details-dialog').remove();
+                resolve(userDetails);
+            } else {
+                alert('Please fill in all fields');
             }
         };
     });
 }
 
 async function initiatePayment(amount, plan) {
-    const telegramId = await showTelegramDialog(amount, plan);
-    if (!telegramId) return;
+    const userDetails = await showUserDetailsDialog(amount, plan);
+    if (!userDetails) return;
 
     try {
-        const response = await fetch(`https://phonepe-pgapi.onrender.com/payment/create-order?user_id=${encodeURIComponent(telegramId)}&amount=${amount}`, {
+        const response = await fetch(`https://phonepe-pgapi.onrender.com/payment/create-order?user_id=${encodeURIComponent(userDetails.telegramId)}&amount=${amount}`, {
             method: 'POST',
             headers: {
                 'accept': 'application/json'
