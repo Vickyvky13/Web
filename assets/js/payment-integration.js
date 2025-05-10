@@ -1,5 +1,3 @@
-
-// Dialog for collecting Telegram ID
 function showTelegramDialog(amount, plan) {
     return new Promise((resolve) => {
         const dialogHTML = `
@@ -7,30 +5,33 @@ function showTelegramDialog(amount, plan) {
                 <div class="dialog-content">
                     <h3>Enter Your Telegram ID</h3>
                     <p>We'll use this ID to contact you about your purchase</p>
-                    <input type="text" id="telegram-id" placeholder="Enter Telegram ID" required>
+                    <input type="text" id="telegram-id" placeholder="@yourusername" required>
                     <div class="dialog-buttons">
-                        <button onclick="closeDialog()" class="button button--ghost">Cancel</button>
-                        <button onclick="submitDialog()" class="button">Continue</button>
+                        <button id="cancel-dialog" class="button button--ghost">Cancel</button>
+                        <button id="continue-dialog" class="button">Continue</button>
                     </div>
                 </div>
             </div>`;
 
         document.body.insertAdjacentHTML('beforeend', dialogHTML);
-        
-        window.closeDialog = () => {
+
+        document.getElementById('cancel-dialog').addEventListener('click', () => {
             document.getElementById('telegram-dialog').remove();
             resolve(null);
-        };
+        });
 
-        window.submitDialog = () => {
-            const telegramId = document.getElementById('telegram-id').value;
+        document.getElementById('continue-dialog').addEventListener('click', () => {
+            const telegramId = document.getElementById('telegram-id').value.trim();
             if (telegramId) {
                 document.getElementById('telegram-dialog').remove();
                 resolve(telegramId);
+            } else {
+                alert('Please enter a valid Telegram ID.');
             }
-        };
+        });
     });
 }
+
 
 async function initiatePayment(amount, plan) {
     const telegramId = await showTelegramDialog(amount, plan);

@@ -948,35 +948,43 @@ button{
   .about__description{
     padding-right: 2rem;
 
-/* Payment Dialog Styles */
+/*=============== KEYFRAMES ===============*/
+@keyframes floating {
+  0% { transform: translate(0,  0px); }
+  50%  { transform: translate(0, 15px); }
+  100%   { transform: translate(0, -0px); }   
+}
+
+/* Real Modal Styles */
 .payment-dialog {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.7);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 9999;
 }
 
 .dialog-content {
-    background: var(--container-color);
+    background: #fff;
     padding: 2rem;
     border-radius: 1rem;
-    width: 90%;
     max-width: 400px;
+    width: 90%;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
     text-align: center;
+    animation: fadeIn 0.3s ease-in-out;
 }
 
 .dialog-content input {
     width: 100%;
     padding: 0.75rem;
     margin: 1rem 0;
-    background: var(--body-color);
-    color: var(--title-color);
+    border: 1px solid #ccc;
     border-radius: 0.5rem;
 }
 
@@ -984,69 +992,25 @@ button{
     display: flex;
     justify-content: center;
     gap: 1rem;
-    margin-top: 1rem;
 }
 
-  }
-
-  .trick__container{
-    gap: 3.5rem;
-  }
-  .trick__content{
-    border-radius: 1.5rem;
-  }
-  .trick__img{
-    width: 110px;
-  }
-  .trick__title{
-    font-size: var(--h3-font-size);
-  }
-
-  .discount__container{
-    column-gap: 7rem;
-  }
-
-  .new__content{
-    width: 310px;
-    border-radius: 1rem;
-    padding: 2rem 0;
-  }
-  .new__img{
-    width: 150px;
-  }
-  .new__img,
-  .new__subtitle{
-    margin-bottom: var(--mb-1);
-  }
-  .new__title{
-    font-size: var(--h3-font-size);
-  }
-
-  .footer__copy{
-    margin-top: 6rem;
-  }
+.button {
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    font-weight: 500;
 }
 
-@media screen and (min-width: 1200px){
-  .home__img{
-    height: 420px;
-  }
-  .swiper-pagination{
-    margin-top: var(--mb-2-5);
-  }
-  .footer__img-one{
-    width: 120px;
-  }
-  .footer__img-two{
-    width: 180px;
-    top: 30%;
-    left: -3%;
-  }
+.button--ghost {
+    background-color: transparent;
+    border: 1px solid #4CAF50;
+    color: #4CAF50;
 }
 
-/*=============== KEYFRAMES ===============*/
-@keyframes floating {
-  0% { transform: translate(0,  0px); }
-  50%  { transform: translate(0, 15px); }
-  100%   { transform: translate(0, -0px); }   
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
 }
