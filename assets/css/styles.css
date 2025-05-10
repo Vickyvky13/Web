@@ -947,6 +947,8 @@ button{
   }
   .about__description{
     padding-right: 2rem;
+  }
+}
 
 /*=============== KEYFRAMES ===============*/
 @keyframes floating {
@@ -1013,4 +1015,46 @@ button{
 @keyframes fadeIn {
     from { opacity: 0; transform: scale(0.9); }
     to { opacity: 1; transform: scale(1); }
+}
+
+/* Payment Dialog Styles */
+.payment-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.dialog-content {
+    background: var(--container-color);
+    padding: 2rem;
+    border-radius: 1rem;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.dialog-content input {
+    width: 100%;
+    padding: 0.75rem;
+    margin: 1rem 0;
+    background: var(--body-color);
+    color: var(--title-color);
+    border-radius: 0.5rem;
+    border: 1px solid var(--text-color-light);
+}
+
+.dialog-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
 }
