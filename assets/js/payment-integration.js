@@ -37,9 +37,16 @@ async function initiatePayment(amount, plan) {
     if (!telegramId) return;
 
     try {
-        const response = await fetch(`https://637vvx-8000.csb.app/payment/create-order?user_id=${telegramId}&amount=${amount}`);
+        const response = await fetch(`https://phonepe-pgapi.onrender.com/payment/create-order?user_id=${encodeURIComponent(telegramId)}&amount=${amount}`, {
+            method: 'POST',
+            headers: {
+                'accept': 'application/json'
+            },
+            body: null
+        });
+
         const data = await response.json();
-        
+
         if (data.success && data.payment_url) {
             window.location.href = data.payment_url;
         } else {
