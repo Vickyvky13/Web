@@ -1,3 +1,21 @@
+function showLoadingDialog() {
+    const loadingHTML = `
+        <div id="loading-dialog" class="payment-dialog">
+            <div class="dialog-content">
+                <div class="loading-spinner"></div>
+                <p>Kindly wait while we securely redirect you to the payment page.</p>
+            </div>
+        </div>`;
+    document.body.insertAdjacentHTML('beforeend', loadingHTML);
+}
+
+function removeLoadingDialog() {
+    const loadingDialog = document.getElementById('loading-dialog');
+    if (loadingDialog) {
+        loadingDialog.remove();
+    }
+}
+
 function showTelegramDialog(amount, plan) {
     return new Promise((resolve) => {
         const dialogHTML = `
@@ -24,6 +42,7 @@ function showTelegramDialog(amount, plan) {
             const telegramId = document.getElementById('telegram-id').value.trim();
             if (telegramId) {
                 document.getElementById('telegram-dialog').remove();
+                showLoadingDialog();
                 resolve(telegramId);
             } else {
                 alert('Please enter a valid Telegram ID.');
@@ -38,23 +57,28 @@ async function initiatePayment(amount, plan) {
     if (!telegramId) return;
 
     try {
-        const response = await fetch(`https://phonepe-pgapi.onrender.com/payment/create-order?user_id=${encodeURIComponent(telegramId)}&amount=${amount}`, {
-            method: 'POST',
-            headers: {
-                'accept': 'application/json'
-            },
-            body: null
-        });
+        const [response] = await Promise.all([
+            fetch(`https://phonepe-pgapi.onrender.com/payment/create-order?user_id=${encodeURIComponent(telegramId)}&amount=${amount}`, {
+                method: 'POST',
+                headers: {
+                    'accept': 'application/json'
+                },
+                body: null
+            }),
+            new Promise(resolve => setTimeout(resolve, 2000)) // Minimum 2 second delay
+        ]);
 
         const data = await response.json();
 
         if (data.success && data.payment_url) {
             window.location.href = data.payment_url;
         } else {
+            removeLoadingDialog();
             alert('Payment initialization failed. Please try again.');
         }
     } catch (error) {
         console.error('Error:', error);
+        removeLoadingDialog();
         alert('Failed to process payment. Please try again.');
     }
 }
