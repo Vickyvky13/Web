@@ -16,6 +16,21 @@ function removeLoadingDialog() {
     }
 }
 
+function showAlert(message, type = 'error') {
+    const alertDiv = document.createElement('div');
+    alertDiv.className = `custom-alert ${type}`;
+    alertDiv.innerHTML = `
+        <div class="alert-content">
+            <p>${message}</p>
+        </div>
+    `;
+    document.body.appendChild(alertDiv);
+    
+    setTimeout(() => {
+        alertDiv.remove();
+    }, 3000);
+}
+
 function showTelegramDialog(amount, plan) {
     return new Promise((resolve) => {
         const dialogHTML = `
@@ -24,14 +39,30 @@ function showTelegramDialog(amount, plan) {
                     <h3>Enter Your Telegram ID</h3>
                     <p>We'll use this ID to contact you about your purchase</p>
                     <input type="text" id="telegram-id" placeholder="@yourusername" required>
+                    <p class="validation-message" id="validation-message"></p>
                     <div class="dialog-buttons">
                         <button id="cancel-dialog" class="button button--ghost">Cancel</button>
-                        <button id="continue-dialog" class="button">Continue</button>
+                        <button id="continue-dialog" class="button" disabled>Continue</button>
                     </div>
                 </div>
             </div>`;
 
         document.body.insertAdjacentHTML('beforeend', dialogHTML);
+
+        const telegramInput = document.getElementById('telegram-id');
+        const continueButton = document.getElementById('continue-dialog');
+        const validationMessage = document.getElementById('validation-message');
+
+        telegramInput.addEventListener('input', () => {
+            const value = telegramInput.value.trim();
+            if (value.length < 3) {
+                validationMessage.textContent = 'Minimum 3 characters required';
+                continueButton.disabled = true;
+            } else {
+                validationMessage.textContent = '';
+                continueButton.disabled = false;
+            }
+        });
 
         document.getElementById('cancel-dialog').addEventListener('click', () => {
             document.getElementById('telegram-dialog').remove();
@@ -39,13 +70,13 @@ function showTelegramDialog(amount, plan) {
         });
 
         document.getElementById('continue-dialog').addEventListener('click', () => {
-            const telegramId = document.getElementById('telegram-id').value.trim();
-            if (telegramId) {
+            const telegramId = telegramInput.value.trim();
+            if (telegramId && telegramId.length >= 3) {
                 document.getElementById('telegram-dialog').remove();
                 showLoadingDialog();
                 resolve(telegramId);
             } else {
-                alert('Please enter a valid Telegram ID.');
+                showAlert('Please enter a valid Telegram ID with at least 3 characters.');
             }
         });
     });
@@ -71,6 +102,7 @@ async function initiatePayment(amount, plan) {
         const data = await response.json();
 
         if (data.success && data.payment_url) {
+            removeLoadingDialog();
             window.location.href = data.payment_url;
         } else {
             removeLoadingDialog();
