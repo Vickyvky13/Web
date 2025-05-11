@@ -948,60 +948,6 @@ button{
   .about__description{
     padding-right: 2rem;
   }
-
-  .trick__container{
-    gap: 3.5rem;
-  }
-  .trick__content{
-    border-radius: 1.5rem;
-  }
-  .trick__img{
-    width: 110px;
-  }
-  .trick__title{
-    font-size: var(--h3-font-size);
-  }
-
-  .discount__container{
-    column-gap: 7rem;
-  }
-
-  .new__content{
-    width: 310px;
-    border-radius: 1rem;
-    padding: 2rem 0;
-  }
-  .new__img{
-    width: 150px;
-  }
-  .new__img,
-  .new__subtitle{
-    margin-bottom: var(--mb-1);
-  }
-  .new__title{
-    font-size: var(--h3-font-size);
-  }
-
-  .footer__copy{
-    margin-top: 6rem;
-  }
-}
-
-@media screen and (min-width: 1200px){
-  .home__img{
-    height: 420px;
-  }
-  .swiper-pagination{
-    margin-top: var(--mb-2-5);
-  }
-  .footer__img-one{
-    width: 120px;
-  }
-  .footer__img-two{
-    width: 180px;
-    top: 30%;
-    left: -3%;
-  }
 }
 
 /*=============== KEYFRAMES ===============*/
@@ -1009,4 +955,153 @@ button{
   0% { transform: translate(0,  0px); }
   50%  { transform: translate(0, 15px); }
   100%   { transform: translate(0, -0px); }   
+}
+
+/* Real Modal Styles */
+.payment-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.dialog-content {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 1rem;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.dialog-content input {
+    width: 100%;
+    padding: 0.75rem;
+    margin: 1rem 0;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+}
+
+.dialog-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.button {
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    font-weight: 500;
+}
+
+.button--ghost {
+    background-color: transparent;
+    border: 1px solid #4CAF50;
+    color: #4CAF50;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Payment Dialog Styles */
+.payment-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.dialog-content {
+    background: var(--container-color);
+    padding: 2rem;
+    border-radius: 1rem;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.dialog-content input {
+    width: 100%;
+    padding: 0.75rem;
+    margin: 1rem 0;
+    background: var(--body-color);
+    color: var(--title-color);
+    border-radius: 0.5rem;
+    border: 1px solid var(--text-color-light);
+}
+
+.dialog-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    margin: 20px auto;
+    border: 4px solid var(--text-color-light);
+    border-top: 4px solid var(--first-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.validation-message {
+    color: var(--first-color);
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    min-height: 1rem;
+}
+
+.custom-alert {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    background: var(--container-color);
+    color: var(--title-color);
+    z-index: 10000;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translate(-50%, -100%);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, 0);
+        opacity: 1;
+    }
 }

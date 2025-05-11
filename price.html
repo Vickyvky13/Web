@@ -30,7 +30,7 @@
                     <h3 class="trick__title">Initiate</h3>
                     <span class="trick__subtitle">1X • One-time broadcast • 1X Speed</span>
                     <span class="trick__price">Rs:249/-</span>
-                    <button class="button trick__button">
+                    <button class="button trick__button" onclick="initiatePayment(249, 'Initiate')">
                         <i class='bx bx-cart-alt trick__icon'></i>
                     </button>
                 </div>
@@ -40,7 +40,7 @@
                     <h3 class="trick__title">Riser</h3>
                     <span class="trick__subtitle">2X • Two broadcasts • 2X Speed</span>
                     <span class="trick__price">Rs:369/-</span>
-                    <button class="button trick__button">
+                    <button class="button trick__button" onclick="initiatePayment(369, 'Riser')">
                         <i class='bx bx-cart-alt trick__icon'></i>
                     </button>
                 </div>
@@ -50,7 +50,7 @@
                     <h3 class="trick__title">Climber</h3>
                     <span class="trick__subtitle">3X • Three broadcasts • 3X Speed</span>
                     <span class="trick__price">Rs:469/-</span>
-                    <button class="button trick__button">
+                    <button class="button trick__button" onclick="initiatePayment(469, 'Climber')">
                         <i class='bx bx-cart-alt trick__icon'></i>
                     </button>
                 </div>
@@ -60,7 +60,7 @@
                     <h3 class="trick__title">Achiever</h3>
                     <span class="trick__subtitle">4X • Four broadcasts • 4X Speed</span>
                     <span class="trick__price">Rs:599/-</span>
-                    <button class="button trick__button">
+                    <button class="button trick__button" onclick="initiatePayment(599, 'Achiever')">
                         <i class='bx bx-cart-alt trick__icon'></i>
                     </button>
                 </div>
@@ -70,7 +70,7 @@
                     <h3 class="trick__title">Elite</h3>
                     <span class="trick__subtitle">5X • Five broadcasts • 5X Speed</span>
                     <span class="trick__price">Rs:799/-</span>
-                    <button class="button trick__button">
+                    <button class="button trick__button" onclick="initiatePayment(799, 'Elite')">
                         <i class='bx bx-cart-alt trick__icon'></i>
                     </button>
                 </div>
@@ -80,7 +80,7 @@
                     <h3 class="trick__title">Legend</h3>
                     <span class="trick__subtitle">6X • Six broadcasts • 6X Speed</span>
                     <span class="trick__price">Rs:999/-</span>
-                    <button class="button trick__button">
+                    <button class="button trick__button" onclick="initiatePayment(999, 'Legend')">
                         <i class='bx bx-cart-alt trick__icon'></i>
                     </button>
                 </div>
@@ -93,7 +93,10 @@
         <p class="footer__copy">&#169; 2025 Ѕᴏʟᴏ Tʀᴇᴇ Cᴏᴍᴍᴜɴɪᴛʏ. All Rights Reserved.</p>
     </footer>
 
-    <!-- Optional JS -->
+    <!-- Required JS -->
+    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js"></script>
+    <script src="assets/js/payment-integration.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
 </html>
