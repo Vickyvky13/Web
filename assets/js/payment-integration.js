@@ -3,7 +3,7 @@ function showLoadingDialog() {
         <div id="loading-dialog" class="payment-dialog">
             <div class="dialog-content">
                 <div class="loading-spinner"></div>
-                <p>Kindly wait while we securely redirect you to the payment page.</p>
+                <p>Kindly wait while we securely redirect you to the payment page...</p>
             </div>
         </div>`;
     document.body.insertAdjacentHTML('beforeend', loadingHTML);
@@ -37,7 +37,8 @@ function showTelegramDialog(amount, plan) {
             <div id="telegram-dialog" class="payment-dialog">
                 <div class="dialog-content">
                     <h3>Enter Your Telegram ID</h3>
-                    <p>We'll use this ID to contact you about your purchase</p>
+                    <p>You can enter either your Telegram <strong>numeric user ID</strong> or your <strong>@username</strong>. 
+                    <strong>Please double-check</strong> to ensure the information is accurate, as we’ll use it to contact you regarding your purchase.</p>
                     <input type="text" id="telegram-id" placeholder="@yourusername" required>
                     <p class="validation-message" id="validation-message"></p>
                     <div class="dialog-buttons">
